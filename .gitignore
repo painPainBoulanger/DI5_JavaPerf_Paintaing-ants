@@ -4,3 +4,7 @@
 .DS_STORE
 
 *.dat
+*.class
+.classpath
+.settings/
+.project
