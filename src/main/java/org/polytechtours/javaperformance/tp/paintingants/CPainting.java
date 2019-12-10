@@ -85,9 +85,9 @@ public class CPainting extends Canvas implements MouseListener {
 
 //        cacheCouleur = new HashMap<>();
         System.out.println("Initialisation du tableau cache couleur à " + System.currentTimeMillis());
-        cacheCouleur = new Color[255][255][255];
-        for (int r = 0; r <= 256; r++) {
-            for (int g = 0; g <= 256; g++) {
+        cacheCouleur = new Color[256][256][256];
+        for (int r = 0; r < 256; r++) {
+            for (int g = 0; g < 256; g++) {
                 for (int b = 0; b < 256; b++) {
                     cacheCouleur[r][g][b] = new Color((int) r, (int) g, (int) b);
                 }
