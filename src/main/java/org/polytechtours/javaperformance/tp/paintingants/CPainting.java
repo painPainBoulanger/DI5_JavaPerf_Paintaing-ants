@@ -57,7 +57,7 @@ public class CPainting extends Canvas implements MouseListener {
 
     private boolean mSuspendu = false;
 
-    private Map<Integer, Color> cacheCouleur;
+    private Color[][][] cacheCouleur;
 
     /******************************************************************************
      * Titre : public CPainting() Description : Constructeur de la classe
@@ -83,7 +83,17 @@ public class CPainting extends Canvas implements MouseListener {
             }
         }
 
-        cacheCouleur = new HashMap<>();
+//        cacheCouleur = new HashMap<>();
+        System.out.println("Initialisation du tableau cache couleur à " + System.currentTimeMillis());
+        cacheCouleur = new Color[255][255][255];
+        for (int r = 0; r  < 255; r++) {
+            for (int g = 0; g < 255; g++) {
+                for (int b = 0; b < 255; b++) {
+                    cacheCouleur[r][g][b] = new Color((int) r, (int) g, (int) b);
+                }
+            }
+        }
+        System.out.println("Fin initialisation à " + System.currentTimeMillis());
 
     }
 
@@ -310,31 +320,6 @@ public class CPainting extends Canvas implements MouseListener {
     }
 
     /**
-     * Méthode implémentant un système de cache pour les couleurs
-     * @param r valeur rouge
-     * @param g valeur verte
-     * @param b valeur bleu
-     * @return Si la couleur existe déja, retourne objet couleur correspondant dans la hashMap,
-     *          si il existe pas, création de l'objet couleur et retourne cet objet
-     */
-    private Color traiterCouleur(int r, int g, int b) {
-
-        int value = (0xFF000000) |
-                    ((r & 0xFF) << 16) |
-                    ((g & 0xFF) << 8)  |
-                    ((b & 0xFF) << 0);
-
-        Color color = cacheCouleur.get(value);
-
-        if (color == null) {
-            color = new Color((int) r, (int) g, (int) b);
-            cacheCouleur.put(value, color);
-        }
-
-        return color;
-    }
-
-    /**
      * Méthode permettant de calculer les valeurs r g b
      * @param pTaille taille de la matrice de convolution
      * @param x coordonnée en x de la fourmi
@@ -371,7 +356,8 @@ public class CPainting extends Canvas implements MouseListener {
                     }
                 }
 
-                lColor = traiterCouleur((int)R,(int) G, (int)B);
+//                lColor = traiterCouleur((int)R,(int) G, (int)B);
+                lColor = cacheCouleur[(int)R][(int) G][(int)B];
                 mGraphics.setColor(lColor);
 
                 m = (x + i - pTaille + mDimension.width) % mDimension.width;
