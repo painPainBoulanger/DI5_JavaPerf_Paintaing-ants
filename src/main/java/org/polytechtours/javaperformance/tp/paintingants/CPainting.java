@@ -346,7 +346,10 @@ public class CPainting extends Canvas implements MouseListener {
         Color lColor;
         int tailleConvo = 2*pTaille + 1;
         float [][] matriceConvo;
-        if (pTaille == 1) {
+        if (pTaille == 0) {
+            // on ne fait rien = pas de diffusion
+            return;
+        }else if (pTaille == 1) {
             matriceConvo = CPainting.mMatriceConv9;
         } else if (pTaille == 2) {
             matriceConvo = CPainting.mMatriceConv25;
