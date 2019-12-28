@@ -8,8 +8,6 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.HashMap;
-import java.util.Map;
 
 // version : 2.0
 
@@ -83,8 +81,8 @@ public class CPainting extends Canvas implements MouseListener {
             }
         }
 
-//        cacheCouleur = new HashMap<>();
-        System.out.println("Initialisation du tableau cache couleur à " + System.currentTimeMillis());
+        long dateDebutInit = System.currentTimeMillis();
+        System.out.println("Initialisation du tableau cache couleur ...");
         cacheCouleur = new Color[256][256][256];
         for (int r = 0; r < 256; r++) {
             for (int g = 0; g < 256; g++) {
@@ -93,7 +91,7 @@ public class CPainting extends Canvas implements MouseListener {
                 }
             }
         }
-        System.out.println("Fin initialisation à " + System.currentTimeMillis());
+        System.out.println("Fin initialisation en " + (System.currentTimeMillis() - dateDebutInit) + " ms");
 
     }
 
